@@ -1,6 +1,7 @@
 {
     "board": "arduino:avr:nano",
-    "configuration": "cpu=atmega328",
+    "configuration": "cpu=atmega328old",
     "programmer": "AVR ISP",
-    "sketch": "servos.ino"
+    "sketch": "servos.ino/servos.ino.ino",
+    "port": "/dev/cu.usbserial-14120"
 }
