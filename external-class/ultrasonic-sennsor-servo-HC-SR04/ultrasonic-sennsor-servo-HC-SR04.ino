@@ -1,3 +1,4 @@
+#include "DistanceSensor.h"
 #include <Servo.h>
 
 Servo servo;
@@ -6,31 +7,22 @@ int PINSERVO = 2;
 int PULSOMIN = 500;
 int PULSOMAX = 2200;
 
-// Ultrasonic sensor
-int TRIG = 10;
-int ECO = 9;
-int LED = 2;
-
-int DURATION;
-int DISTANCE;
-
+// Ultrasonic sensor TRIG = 10, ECO = 9
+DistanceSensor distanceSensor(10, 9);
 
 void setup()
 {
-  pinMode(TRIG, OUTPUT);
-  pinMode(ECO, INPUT);
-  pinMode(LED, OUTPUT);
+  distanceSensor.init();
+
   servo.attach(PINSERVO, PULSOMIN, PULSOMAX);
+
   Serial.begin(9600);
 }
 
 void loop()
-{
-  digitalWrite(TRIG, HIGH);
-  delay(1);
-  digitalWrite(TRIG, LOW);
-  DURATION = pulseIn(ECO, HIGH);
-  DISTANCE = DURATION / 58.2; // CONSTANT OF MY SENSOR
+{ 
+  int DISTANCE = distanceSensor.getDistance();
+  
   Serial.println(DISTANCE);
   delay(200);
 
@@ -38,7 +30,6 @@ void loop()
     moveServo();
    }
 }
-
 
 void moveServo() {
    servo.write(0);
