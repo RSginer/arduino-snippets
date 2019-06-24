@@ -2,8 +2,8 @@
 #include <Servo.h>
 
 int PINSERVO = 2;
-int PULSOMIN = 500;
-int PULSOMAX = 2200;
+int PULSOMIN = 600;
+int PULSOMAX = 2100;
 
 // Ultrasonic sensor TRIG = 10, ECO = 9
 int TRIG = 10;
